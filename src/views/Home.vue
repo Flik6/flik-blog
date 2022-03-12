@@ -12,7 +12,8 @@
       <template #icon><smile-outlined /></template>
     </a-alert>
     <div class="card_carousel">
-      <a-carousel autoplay>
+      <a-carousel>
+<!--      <a-carousel autoplay>-->
         <div><img src="https://api.ixiaowai.cn/gqapi/gqapi.php?t=2"></div>
         <div><img src="https://api.ixiaowai.cn/gqapi/gqapi.php?t=3"></div>
         <div><img src="https://api.ixiaowai.cn/gqapi/gqapi.php?t=4"></div>
@@ -20,86 +21,19 @@
       </a-carousel>
     </div>
     <div class="card_wrap">
-      <div class="card_item">
-        <a-card hoverable>
+      <div class="card_item" v-for="(items,index) in cards" >
+        <a-card hoverable :loading="loading">
           <template #cover>
-            <img alt="example" src=" https://api.ixiaowai.cn/mcapi/mcapi.php?t=1" />
+            <img alt="example" :src=cardImage+index />
           </template>
-          <a-card-meta title="Europe Street beat">
-            <template #description>www.instagram.com</template>
+          <a-card-meta :title=items.title>
+            <template #description>
+              {{items.intro}}
+            </template>
           </a-card-meta>
         </a-card>
       </div>
-      <div class="card_item">
-        <a-card hoverable >
-          <template #cover>
-            <img alt="example" src=" https://api.ixiaowai.cn/mcapi/mcapi.php?t=2" />
-          </template>
-          <a-card-meta title="Europe Street beat">
-            <template #description>www.instagram.com</template>
-          </a-card-meta>
-        </a-card>
-      </div>
-      <div class="card_item">
-        <a-card hoverable >
-          <template #cover>
-            <img alt="example" src=" https://api.ixiaowai.cn/mcapi/mcapi.php?t=3" />
-          </template>
-          <a-card-meta title="Europe Street beat">
-            <template #description>www.instagram.com</template>
-          </a-card-meta>
-        </a-card>
-      </div>
-      <div class="card_item">
-        <a-card hoverable >
-          <template #cover>
-            <img alt="example" src=" https://api.ixiaowai.cn/mcapi/mcapi.php?t=4" />
-          </template>
-          <a-card-meta title="Europe Street beat">
-            <template #description>www.instagram.com</template>
-          </a-card-meta>
-        </a-card>
-      </div>
-      <div class="card_item">
-        <a-card hoverable >
-          <template #cover>
-            <img alt="example" src=" https://api.ixiaowai.cn/mcapi/mcapi.php?t=5" />
-          </template>
-          <a-card-meta title="Europe Street beat">
-            <template #description>www.instagram.com</template>
-          </a-card-meta>
-        </a-card>
-      </div>
-      <div class="card_item">
-        <a-card hoverable >
-          <template #cover>
-            <img alt="example" src=" https://api.ixiaowai.cn/mcapi/mcapi.php?t=6" />
-          </template>
-          <a-card-meta title="Europe Street beat">
-            <template #description>www.instagram.com</template>
-          </a-card-meta>
-        </a-card>
-      </div>
-      <div class="card_item">
-        <a-card hoverable >
-          <template #cover>
-            <img alt="example" src=" https://api.ixiaowai.cn/mcapi/mcapi.php?t=7" />
-          </template>
-          <a-card-meta title="Europe Street beat">
-            <template #description>www.instagram.com</template>
-          </a-card-meta>
-        </a-card>
-      </div>
-      <div class="card_item">
-        <a-card hoverable >
-          <template #cover>
-            <img alt="example" src=" https://api.ixiaowai.cn/mcapi/mcapi.php?t=8" />
-          </template>
-          <a-card-meta title="Europe Street beat">
-            <template #description>www.instagram.com</template>
-          </a-card-meta>
-        </a-card>
-      </div>
+
 
     </div>
 
@@ -129,7 +63,10 @@ export default {
   },
   data(){
     return{
-      announcement:""
+      announcement:"",
+      cardImage:"https://api.ixiaowai.cn/mcapi/mcapi.php?t=",
+      cards:[],
+      loading:true
     }
   },methods:{
     getAnnouncement(){
@@ -144,10 +81,27 @@ export default {
         that.announcement=""
         console.log(error)
       })
+    },
+    getCardsList(){
+      let that= this
+      getRequest("/api/home/getCards").then((resp) => {
+
+        if (resp.code==200) {
+          that.cards = resp.data;
+
+          that.loading=false
+        }
+
+      }).catch((error) => {
+        that.announcement=""
+        console.log(error)
+      })
     }
   },
   mounted() {
-    this.getAnnouncement()
+    this.getAnnouncement();
+    this.getCardsList();
+
   }
 
 }
@@ -155,56 +109,81 @@ export default {
 
 <style scoped>
 
-.slick-initialized{
-  width: 100%;
-  height: 100%;
+>>> .ant-card-meta-description{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
+
+.ant-carousel{
+  width: 95%;
+  margin: 1vh auto;
+
+}
+
+.ant-carousel >>> .slick-slide >>> img {
+
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: fill;
+}
+
 
 .card_wrap{
   text-align: center;
   display: flex;
   flex-wrap: wrap;
   width: 95%;
-  justify-content: center;
+  justify-content: space-between;
+  align-content: space-between;
   margin: 0 auto;
 }
-.card_item{
-  flex-basis: 25%;
-  margin-bottom: 16px;
-  padding: 0px 8px;
-  box-sizing: border-box;
-}
+
+
+
 @media (max-width: 768px){
-  .card_carousel{
-    width: 100%;
-    height: 17em;
-    text-align: center;
-    margin: 5px auto;
+
+  .ant-carousel >>> .slick-track{
+    height: 30vh;
   }
+
+  /*设置卡片的单个长度*/
+  .card_item{
+    width: 50%;
+    margin-bottom: 16px;
+    padding: 0px 8px;
+    box-sizing: border-box;
+  }
+
 }
 
 @media screen and (max-width: 992px) and (min-width: 768px){
-  .card_carousel{
-
-    width: 90%;
-    height: 23em;
-    text-align: center;
-    margin: 5px auto;
+  .ant-carousel >>> .slick-track{
+    height: 60vh;
   }
-  .slick-slider .slick-initialized{
-    border-radius: 10px;
+  /*设置卡片的单个长度*/
+  .card_item{
+    width: 30%;
+    margin-bottom: 16px;
+    padding: 0px 8px;
+    box-sizing: border-box;
   }
 }
 
 
 @media (min-width: 992px){
-  .card_carousel{
-    border-radius: 2em;
-    width: 90%;
-    text-align: center;
-    margin: 5px auto;
-    height: 50em;
+  .ant-carousel >>> .slick-track{
+    height: 60vh;
   }
+
+  /*设置卡片的单个长度*/
+  .card_item{
+    width: 20%;
+    margin-bottom: 16px;
+    padding: 0px 8px;
+    box-sizing: border-box;
+  }
+
 }
 
 </style>
