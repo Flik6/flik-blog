@@ -3,13 +3,13 @@ import router from './router'
 import store from './store'
 import App from './App';
 
-import { Button,Layout,Menu,Carousel,Card,Avatar,Alert,Badge,Dropdown } from 'ant-design-vue'
+import { Button,Layout,Menu,Carousel,Card,Avatar,Alert,Badge,Dropdown,Image,Spin } from 'ant-design-vue'
 
 
 const app = createApp(App);
 app.config.productionTip = false;
 
-[Button,Layout,Menu,Carousel,Card,Avatar,Alert,Badge,Dropdown].forEach(item=>{
+[Button,Layout,Menu,Carousel,Card,Avatar,Alert,Badge,Dropdown,Image,Spin].forEach(item=>{
     app.use(item)
 })
 // app.use(Layout)

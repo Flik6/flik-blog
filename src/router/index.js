@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 import Home from '../views/Home.vue'
 
 const routes = [
@@ -6,6 +6,13 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  }, {
+    path: '/articles',
+    name:'articles',
+    meta: {
+      title: "文章-Flik,让生活,更生活"
+    },
+    component: () => import('../views/article/ArticleInfo')
   },
   {
     path: '/about',
@@ -18,7 +25,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 })
 

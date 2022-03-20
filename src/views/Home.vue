@@ -21,8 +21,9 @@
       </a-carousel>
     </div>
     <div class="card_wrap">
-      <div class="card_item" v-for="(items,index) in cards" >
-        <a-card hoverable :loading="loading">
+      <div class="card_item" v-for="(items,index) in cards" :key="index">
+        <router-link :to="{ name: 'articles',query:{articleId:items.articleId}}">
+        <a-card hoverable :loading="loading" >
           <template #cover>
             <img alt="example" :src=cardImage+index />
           </template>
@@ -32,6 +33,7 @@
             </template>
           </a-card-meta>
         </a-card>
+        </router-link>
       </div>
 
 
@@ -69,6 +71,15 @@ export default {
       loading:true
     }
   },methods:{
+    // eslint-disable-next-line no-unused-vars
+    jumpOtherPage(item){
+      if (item.externalLink) {
+        window.location.href = item.externalLink;
+      } else {
+        this.$router.push({name: 'articles', query: {articleId: item.articleId}});
+      }
+
+    },
     getAnnouncement(){
       let that= this
       getRequest("/api/home/announcement").then((resp) => {
@@ -116,8 +127,7 @@ export default {
 }
 
 .ant-carousel{
-  width: 95%;
-  margin: 1vh auto;
+  width: 100%;
 
 }
 

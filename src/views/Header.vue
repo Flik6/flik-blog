@@ -7,7 +7,8 @@
           theme="dark"
           mode="horizontal"
       >
-        <a-menu-item key="1">首页</a-menu-item>
+        <a-menu-item @click="$router.push('/')" key="1">首页</a-menu-item>
+
         <a-menu-item key="2">公共Api</a-menu-item>
         <a-menu-item key="3">个人中心</a-menu-item>
 
@@ -26,7 +27,7 @@
           </a-avatar>
         </a-badge>
         <template #overlay>
-          <a-menu @click="onClick">
+          <a-menu @click="clickUserMenu">
             <a-menu-item key="1">个人资料</a-menu-item>
             <a-menu-item key="2">退出登录</a-menu-item>
           </a-menu>
@@ -43,6 +44,11 @@ export default {
     return {
       menuKey: ['1'],
       userName: 'Flik'
+    }
+  },methods:{
+    clickUserMenu(item_key){
+
+
     }
   }
 }
