@@ -146,7 +146,7 @@ export default {
   width: 95%;
   justify-content: space-between;
   align-content: space-between;
-  margin: 0 auto;
+  margin: 20px auto;
 }
 
 
