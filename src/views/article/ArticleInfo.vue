@@ -1,24 +1,19 @@
 <template>
   <div>
+    <div class="info">
+      <a-image
+          :src="`https://picsum.photos/1920/1080?t=${random}`"
+          class="image-header"
+      >
 
-    <a-image
-        :src="`http://www.qqlykm.cn/api/ag/api.php?t=3?${random}`"
-    >
-      <template #placeholder>
-        <a-image
-            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png?x-oss-process=image/blur,r_50,s_50/quality,q_1/resize,m_mfit,h_200,w_200"
-            :width="200"
-            :preview="false"
-        />
-      </template>
-    </a-image>
-    <a-spin v-if="article=={}" />
-    <div v-else class="article-content markdown-body">
-      <h1 v-text="article.title"/>
-      <div  v-html="article.content">
-    </div>
+      </a-image>
+      <a-spin v-if="article==null || article=='' ||article=={}"/>
 
-
+      <div v-else class="article-content markdown-body">
+        <h1 v-text="article.title"/>
+        <div v-html="article.content">
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -26,35 +21,31 @@
 <script>
 import {getRequest} from "@/util/requestApi";
 import 'github-markdown-css';
-import { ref } from 'vue';
+import {ref} from 'vue';
 
 export default {
   name: "ArticleInfo",
   data() {
     return {
       article: {},
-      random:ref()
+      random: ref()
     }
-  },computed:{
-
-  },
-  methods:{
+  }, computed: {},
+  methods: {
     getArticle() {
-      // this.article={};
-      let _this=this
       getRequest("/api/article/articles/" + this.$route.query.articleId).then(resp => {
-        console.log(resp)
-        if (resp.code==4102){
+        if (resp.code == 4102) {
           console.log(resp)
           return;
         }
         this.article = resp.data;
+        document.title = resp.data.title + "- 让生活·更生活"
 
       }, error => {
-
+        console.log(error)
       })
     },
-  },mounted() {
+  }, mounted() {
     this.getArticle()
   }
 
@@ -62,9 +53,46 @@ export default {
 </script>
 
 <style scoped>
-.article-content{
-  width: 50%;
-  margin: 0 auto;
-  padding: 100px 50px;
+
+@media (max-width: 768px) {
+  .image-header {
+    height: 50vh;
+  }
+
+  .article-content {
+    width: 95%;
+    margin: 0 auto;
+    padding: 1vh 2vw;
+  }
+}
+
+@media screen and (max-width: 992px) and (min-width: 768px) {
+  .image-header {
+    width: 100vw;
+    height: 70vh
+  }
+
+  .article-content {
+    width: 70%;
+    margin: 0 auto;
+    padding: 100px 50px;
+  }
+}
+
+@media (min-width: 992px) {
+  /deep/ .ant-image {
+    width: 100%;
+  }
+
+  /deep/ .ant-image-img {
+    width: 100%;
+    height: 70vh
+  }
+
+  .article-content {
+    width: 50%;
+    margin: 0 auto;
+    padding: 100px 50px;
+  }
 }
 </style>

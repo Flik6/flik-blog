@@ -1,5 +1,5 @@
 {
-  "name": "flik-blog",
+  "name": "Flik-blog",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,6 +12,7 @@
     "ant-design-vue": "^2.2.8",
     "core-js": "^3.6.5",
     "github-markdown-css": "^5.1.0",
+    "md-editor-v3": "^1.11.6",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"

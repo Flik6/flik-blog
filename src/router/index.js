@@ -1,5 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import Home from '../views/Home.vue'
+import {message} from "ant-design-vue";
 
 const routes = [
   {
@@ -10,10 +11,25 @@ const routes = [
     path: '/articles',
     name:'articles',
     meta: {
-      title: "文章-Flik,让生活,更生活"
+      title: "文章- 让生活·更生活"
     },
     component: () => import('../views/article/ArticleInfo')
+  }, {
+    path: '/userinfo',
+    name:'userinfo',
+    meta: {
+      title: "个人资料- 让生活·更生活"
+    },
+    component: () => import('../views/user/UserInfo')
+  },{
+    path: '/publicArticle',
+    name:'publicArticle',
+    meta: {
+      title: "发表文章- 让生活·更生活"
+    },
+    component: () => import('../views/article/PublicArticle')
   },
+
   {
     path: '/about',
     name: 'About',
@@ -30,3 +46,21 @@ const router = createRouter({
 })
 
 export default router
+
+router.beforeEach((to, from, next) => {
+  /* 路由发生变化修改页面title */
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
+  if (to.meta.isLogin) {
+
+    if (Object.prototype.hasOwnProperty.call(window.sessionStorage,'token')) {
+      next()
+    } else {
+      message.error("尚未登录,请登录~")
+      next({path: '/login'})
+      return;
+    }
+  }
+  next()
+})

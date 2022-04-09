@@ -1,16 +1,18 @@
 <template>
 
-  <a-layout>
-    <a-layout-header>
-      <Header/>
-    </a-layout-header>
-    <a-layout-content>
-      <router-view/>
-    </a-layout-content>
-    <a-layout-footer>
-      <Footer/>
-    </a-layout-footer>
-  </a-layout>
+    <a-layout>
+        <a-affix>
+            <a-layout-header>
+                <Header/>
+            </a-layout-header>
+        </a-affix>
+        <a-layout-content>
+            <router-view/>
+        </a-layout-content>
+        <a-layout-footer>
+            <Footer/>
+        </a-layout-footer>
+    </a-layout>
 
 </template>
 <script>
@@ -19,17 +21,17 @@ import Footer from "@/views/Footer";
 
 
 export default {
-  components: {
-    Header,
-    Footer,
-  }
+    components: {
+        Header,
+        Footer,
+    }
 
 }
 </script>
 <style>
-@media screen and (max-width:1000px ){
-  .ant-layout-header{
-    padding: 0 1em 0 0!important;
-  }
+@media screen and (max-width: 1000px ) {
+    .ant-layout-header {
+        padding: 0 1em 0 0 !important;
+    }
 }
 </style>
