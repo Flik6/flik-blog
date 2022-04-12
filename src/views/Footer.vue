@@ -4,7 +4,7 @@
       <div class="icon"><a href="http://www.qijishow.com/Brand/Brand5/index.htm" target="_blank" title="微信公众号">
         <wechat-outlined/>
         微信公众号</a></div>
-      <div class="copyrights_certificate"><a href="https://beian.miit.gov.cn" target="_blank">豫ICP备2021012196号</a>　<a>因设计.而美丽</a>　Copyright
+      <div class="copyrights_certificate"><a href="https://beian.miit.gov.cn" target="_blank">豫ICP备2021012196号</a>　<a>让生活·更生活</a>　Copyright
         © 82coco.cn. All Rights Reserved.
       </div>
     </div>

@@ -34,7 +34,7 @@ module.exports = {
                 //webSocker
                 ws: false,
                 // 目标地址
-                target: 'http://www.52coco.xyz',
+                target: 'https://www.82coco.cn',
                 // target: 'http://localhost:8081',
                 //发送请求host会被设置成target的地址
                 changeOrigin: true,

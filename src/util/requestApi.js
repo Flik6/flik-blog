@@ -85,3 +85,13 @@ export const deleteRequest = (url, params) => {
         data: params
     })
 }
+export const postRequestJson = (url, params) => {
+    return axios({
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'post',
+        url: `${base}${url}`,
+        data: params
+    })
+}

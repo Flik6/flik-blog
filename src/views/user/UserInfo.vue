@@ -1,7 +1,7 @@
 <template>
   <div class="info">
     <div style="display: flex;justify-content: flex-end">
-      <a-button type="link"   @click="modifyInfo">修改</a-button>
+      <a-button type="link"  @click="modifyInfo">修改</a-button>
       <a-button type="link" v-show="state.isModifyInfo" @click="this.state.isModifyInfo=!this.state.isModifyInfo">取消</a-button>
     </div>
 

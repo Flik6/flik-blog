@@ -6,7 +6,7 @@ export default new createStore({
         // routers: [],
         token:window.sessionStorage.getItem("token"),
         // username:window.sessionStorage.getItem("username"),
-        payload:window.sessionStorage.getItem("payload")
+        payload:window.sessionStorage.getItem("payload"),
     },
     //改变state 内值的方法 同步执行
     mutations: {

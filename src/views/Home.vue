@@ -111,7 +111,7 @@ export default {
     mounted() {
         this.getAnnouncement();
         this.getCardsList();
-        document.title = "Flik - 因设计·而美丽"
+        document.title = "Flik - 让生活·更生活"
     }
 
 }

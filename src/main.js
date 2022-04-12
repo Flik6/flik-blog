@@ -2,7 +2,7 @@ import {createApp} from 'vue';
 import router from './router'
 import store from './store'
 import App from './App';
-
+import {create, NCarousel, NCarouselItem} from "naive-ui";
 import {
     Button,
     Layout,
@@ -20,19 +20,23 @@ import {
     Input,
     Affix,
     Select,
-    Switch
+    Switch,
+    Modal,
+    Tag
 } from 'ant-design-vue'
+
 
 
 const app = createApp(App);
 app.config.productionTip = false;
 
-import {getRequest, postRequest, putRequest, deleteRequest} from "@/util/requestApi";
+import {getRequest, postRequest, putRequest, deleteRequest, postRequestJson} from "@/util/requestApi";
 
 app.config.globalProperties.$postRequest = postRequest; // 自定义添加
 app.config.globalProperties.$getRequest = getRequest; // 自定义添加
 app.config.globalProperties.$putRequest = putRequest; // 自定义添加
 app.config.globalProperties.$deleteRequest = deleteRequest; // 自定义添加
+app.config.globalProperties.$postRequestJson = postRequestJson; // 自定义添加
 
 [
     Button,
@@ -51,17 +55,16 @@ app.config.globalProperties.$deleteRequest = deleteRequest; // 自定义添加
     Input,
     Affix,
     Select,
-    Switch
+    Switch,
+    Modal,
+    Tag
 ].forEach(item => {
     app.use(item)
 })
-
-// app.use(Layout)
-//     .use(Button)
-//     .use(Menu)
-//     .use(Carousel)
-//     .use(Card)
+const naive = create({
+    components: [NCarousel,NCarouselItem]
+})
 
 app.use(store)
-    .use(router)
+    .use(router).use(naive)
     .mount('#app')

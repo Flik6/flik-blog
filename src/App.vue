@@ -1,6 +1,6 @@
 <template>
 
-    <a-layout>
+    <a-layout id="layout-ui">
         <a-affix>
             <a-layout-header>
                 <Header/>
@@ -29,9 +29,14 @@ export default {
 }
 </script>
 <style>
-@media screen and (max-width: 1000px ) {
-    .ant-layout-header {
-        padding: 0 1em 0 0 !important;
-    }
+#app{
+    height: 100%;
+}
+#layout-ui{
+    min-height: 100%;
+}
+.ant-layout-content{
+    display: flex;
+    flex-direction: column;
 }
 </style>
