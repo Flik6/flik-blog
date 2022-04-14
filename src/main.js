@@ -22,7 +22,7 @@ import {
     Select,
     Switch,
     Modal,
-    Tag
+    Tag, Tooltip
 } from 'ant-design-vue'
 
 
@@ -57,7 +57,8 @@ app.config.globalProperties.$postRequestJson = postRequestJson; // 自定义添�
     Select,
     Switch,
     Modal,
-    Tag
+    Tag,
+    Tooltip
 ].forEach(item => {
     app.use(item)
 })

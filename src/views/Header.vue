@@ -1,7 +1,9 @@
 <template>
 
     <div class="header">
-        <div class="logo"/>
+        <a class="logo" href="/" >
+<!--            <div class="logo"/>-->
+        </a>
         <div class="menu">
 
             <a-menu
@@ -20,8 +22,8 @@
 
         </div>
 
-        <div class="avatar" v-show="!loginState">
-            <a-button type="primary" shape="circle" @click="state.isAlertLoginWindow=!state.isAlertLoginWindow">
+        <div class="avatar" v-show="!loginState" @click="state.isLogin=!state.isLogin">
+            <a-button type="primary" shape="circle">
                 <template #icon>
                     <UserOutlined/>
                 </template>
@@ -60,12 +62,13 @@
 
     <!--    网站登录框-->
     <a-drawer
-            :visible="!loginState"
+            :visible="state.isLogin"
             class="custom-class"
             style="color: red"
             title="登录账号"
             placement="right"
             size="large"
+            @close="this.state.isLogin=!this.state.isLogin"
     >
         <a-form
                 :model="userData"
@@ -169,7 +172,7 @@ export default {
             userName: 'Flik',
             state: {
                 isAlertRegisterWindow: false,
-
+                isLogin: false
             },
             userData: {
                 //用户数据
@@ -220,7 +223,7 @@ export default {
                     //向vuex内存入token 并写入到sessionStorage
                     that.$store.commit("setToken", tokenStr)
                     that.$store.commit("setPayload", payload)
-
+                    that.state.isLogin = false;
                     // that.userData = JSON.parse(payload);
                     // 关闭登录窗口
                     // that.state.isAlertLoginWindow = false;
@@ -282,8 +285,8 @@ export default {
 /*手机*/
 @media screen and (max-width: 600px) {
     .logo {
-        width: 13%;
-
+        width: 14%;
+        margin-right:0px !important;
     }
 }
 
@@ -306,7 +309,7 @@ export default {
 .logo {
     height: 100%;
     /*float: left;*/
-    background-image: url("../assets/Flik.jpg");
+    background-image: url("../assets/Flik.png");
     background-size: auto 100%;
     background-repeat: no-repeat;
     margin-right: 1em;
@@ -315,6 +318,7 @@ export default {
 
 .avatar {
     float: right;
+    margin-right: 1vw;
 }
 
 .menu {

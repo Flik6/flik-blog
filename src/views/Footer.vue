@@ -1,10 +1,10 @@
 <template>
   <div>
     <div>
-      <div class="icon"><a href="http://www.qijishow.com/Brand/Brand5/index.htm" target="_blank" title="微信公众号">
+      <div class="icon"><a href="https://www.82coco.cn/html/wechat.html" target="_blank" title="微信小程序">
         <wechat-outlined/>
-        微信公众号</a></div>
-      <div class="copyrights_certificate"><a href="https://beian.miit.gov.cn" target="_blank">豫ICP备2021012196号</a>　<a>让生活·更生活</a>　Copyright
+        微信小程序</a></div>
+      <div class="copyrights_certificate"><a href="https://beian.miit.gov.cn" target="_blank">豫ICP备2021012196号</a> <a>让生活·更生活</a> Copyright
         © 82coco.cn. All Rights Reserved.
       </div>
     </div>

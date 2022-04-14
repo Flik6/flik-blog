@@ -100,7 +100,7 @@ export default {
                 }*/
 
             }, error => {
-                message.error("未知错误,文章发表失败")
+                message.error("未知错误,文章发表失败",error)
             })
 
         },

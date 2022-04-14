@@ -39,4 +39,9 @@ export default {
     display: flex;
     flex-direction: column;
 }
+@media screen and (max-width:1000px ){
+    .ant-layout-header{
+        padding: 0 0 0 0!important;
+    }
+}
 </style>
