@@ -13,21 +13,49 @@
                 <smile-outlined/>
             </template>
         </a-alert>
-        <div class="card_carousel">
-            <a-carousel>
-                <!--      <a-carousel autoplay>-->
-                <img src="http://www.qijishow.com/images/202200310.jpg?t=2">
-                <img src="http://www.qijishow.com/images/20220113.jpg?t=3">
-                <img src="https://api.ixiaowai.cn/gqapi/gqapi.php?t=4">
-                <img src="https://api.ixiaowai.cn/gqapi/gqapi.php?t=5">
-            </a-carousel>
+        <div>
+            <n-carousel
+                effect="card"
+                prev-slide-style="transform: translateX(-150%) translateZ(-800px);"
+                next-slide-style="transform: translateX(50%) translateZ(-800px);"
+
+                class="card_carousel"
+                :show-dots="false"
+            >
+              <n-carousel-item :style="{ width: '80%' }">
+                <img
+                    class="carousel-img"
+                    src="http://cdn.82coco.cn/2022.jpg"
+                >
+              </n-carousel-item>
+              <n-carousel-item :style="{ width: '90%' }">
+                <img
+                    class="carousel-img"
+                    src="http://cdn.82coco.cn/one.jpg"
+                >
+              </n-carousel-item>
+              <n-carousel-item :style="{ width: '90%' }">
+                <img
+                    class="carousel-img"
+                    src="https://api.ixiaowai.cn/gqapi/gqapi.php?t=4"
+                >
+              </n-carousel-item>
+              <n-carousel-item :style="{ width: '90%' }">
+                <img
+                    class="carousel-img"
+                    src="https://api.ixiaowai.cn/gqapi/gqapi.php?t=5"
+                >
+              </n-carousel-item>
+            </n-carousel>
+
         </div>
         <div class="card_wrap">
             <div class="card_item" v-for="(items,index) in cards" :key="index">
                 <router-link :to="{ name: 'articles',query:{articleId:items.articleId}}">
                     <a-card hoverable :loading="loading">
                         <template #cover>
-                            <img alt="example" :src=cardImage+index />
+<!--                            <img alt="example" :src=cardImage+index />-->
+                            <img alt="example" :src=items.articleImage />
                         </template>
                         <a-card-meta :title=items.title>
                             <template #description>
@@ -65,7 +93,7 @@ export default {
     data() {
         return {
             announcement: "",
-            cardImage: "https://api.ixiaowai.cn/mcapi/mcapi.php?t=",
+            cardImage: "https://api.isoyu.com/ARU_GIF_S.php?t=",
             cards: [],
             loading: true
         }
@@ -118,33 +146,22 @@ export default {
 </script>
 
 <style scoped>
+.carousel-img {
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  border-radius: 50px;
+}
+
 
 /*卡片简介 样式*/
->>> .ant-card-meta-description {
+:deep( .ant-card-meta-description) {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-/*走马灯图片内高度 样式*/
-.ant-carousel {
-    width: 100%;
-}
-
-.ant-carousel >>> .slick-track {
-    height: 100%;
-}
-
-.ant-carousel >>> .slick-track div {
-    height: 100%;
-    width: 100%;
-    display: inline-block;
-}
-
-
-.ant-carousel >>> .slick-track img {
-    height: 100%;
-}
 
 /*卡片布局样式*/
 
@@ -161,10 +178,10 @@ export default {
 
 /*多端自适应布局*/
 @media (max-width: 768px) {
+  .card_carousel{
+    height: 30vh;
+  }
 
-    .ant-carousel >>> .slick-track {
-        height: 30vh;
-    }
 
     /*设置卡片的单个长度*/
     .card_item {
@@ -177,9 +194,9 @@ export default {
 }
 
 @media screen and (max-width: 992px) and (min-width: 768px) {
-    .ant-carousel >>> .slick-track {
-        height: 60vh;
-    }
+  .card_carousel{
+    height: 40vh;
+  }
 
     /*设置卡片的单个长度*/
     .card_item {
@@ -192,14 +209,11 @@ export default {
 
 
 @media (min-width: 992px) {
-    .ant-carousel >>> .slick-list {
-        height: 60vh;
-    }
 
-    .ant-carousel {
-        width: 95%;
-        margin: 0 auto;
-    }
+.card_carousel{
+  height: 60vh;
+}
+
 
     /*设置卡片的单个长度*/
     .card_item {

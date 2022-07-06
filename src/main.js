@@ -58,7 +58,9 @@ app.config.globalProperties.$postRequestJson = postRequestJson; // 自定义添�
     Switch,
     Modal,
     Tag,
-    Tooltip
+    Tooltip,
+    NCarousel,
+    NCarouselItem
 ].forEach(item => {
     app.use(item)
 })

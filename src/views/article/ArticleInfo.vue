@@ -5,8 +5,9 @@
           :src="`https://picsum.photos/1920/1080?t=${random}`"
           class="image-header"
       >
-
       </a-image>
+      <video src="https://resource.meihua.info/2SxYJ5jka40dYgykSYASyV3Rrik=/lmSiyGIILwOym7MTcC8UOByxCV_i"></video>
+
       <a-spin v-if="article==null || article=='' ||article=={}"/>
 
       <div v-else class="article-content markdown-body">
