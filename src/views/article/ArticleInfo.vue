@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="info">
-      <a-image
-          :src="`https://picsum.photos/1920/1080?t=${random}`"
-          class="image-header"
-      >
-      </a-image>
-      <video src="https://resource.meihua.info/2SxYJ5jka40dYgykSYASyV3Rrik=/lmSiyGIILwOym7MTcC8UOByxCV_i"></video>
+<!--      <a-image-->
+<!--          :src="`https://picsum.photos/1920/1080?t=${random}`"-->
+<!--          class="image-header"-->
+<!--      >-->
+<!--      </a-image>-->
+      <video  autoplay="autoplay" muted="muted"  loop="loop" class="image-header" src="https://prod-streaming-video-msn-com.akamaized.net/9752d732-2354-483f-a678-a6d0cd2c22b7/1a5ed13a-43f5-4e85-95c8-6579065c4d7c.mp4"></video>
 
       <a-spin v-if="article==null || article=='' ||article=={}"/>
 
@@ -57,6 +57,7 @@ export default {
 
 @media (max-width: 768px) {
   .image-header {
+    width: 100%;
     height: 50vh;
   }
 
@@ -69,7 +70,7 @@ export default {
 
 @media screen and (max-width: 992px) and (min-width: 768px) {
   .image-header {
-    width: 100vw;
+    width: 100%;
     height: 70vh
   }
 
@@ -81,6 +82,13 @@ export default {
 }
 
 @media (min-width: 992px) {
+  .image-header {
+    width: 100%;
+    height: 70vh
+
+  }
+
+
   /deep/ .ant-image {
     width: 100%;
   }

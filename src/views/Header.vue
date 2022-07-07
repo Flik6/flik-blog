@@ -99,11 +99,11 @@
             <!--      </a-form-item>-->
 
             <a-form-item :wrapper-col="{ offset: 8, span: 16 }">
-                <a-button type="primary" :disabled="disabledLogin" html-type="submit" style="margin-right: 10px"
+              <a-button type="primary" html-type="submit" @click="state.isAlertRegisterWindow=true;">注册</a-button>
+
+                <a-button type="primary" :disabled="disabledLogin" html-type="submit" style="margin-left: 10px"
                           @click="submitLoginData()">登录
                 </a-button>
-
-                <a-button type="primary" html-type="submit" @click="state.isAlertRegisterWindow=true;">注册</a-button>
             </a-form-item>
         </a-form>
     </a-drawer>

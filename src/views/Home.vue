@@ -2,12 +2,12 @@
     <div>
 
         <a-alert
-                v-show="announcement!=''"
-                :message="announcement"
-                type="success"
-                :banner="true"
-                closable
-                show-icon
+            v-show="announcement!=''"
+            :message="announcement"
+            type="success"
+            :banner="true"
+            closable
+            show-icon
         >
             <template #icon>
                 <smile-outlined/>
@@ -22,30 +22,30 @@
                 class="card_carousel"
                 :show-dots="false"
             >
-              <n-carousel-item :style="{ width: '80%' }">
-                <img
-                    class="carousel-img"
-                    src="http://cdn.82coco.cn/2022.jpg"
-                >
-              </n-carousel-item>
-              <n-carousel-item :style="{ width: '90%' }">
-                <img
-                    class="carousel-img"
-                    src="http://cdn.82coco.cn/one.jpg"
-                >
-              </n-carousel-item>
-              <n-carousel-item :style="{ width: '90%' }">
-                <img
-                    class="carousel-img"
-                    src="https://api.ixiaowai.cn/gqapi/gqapi.php?t=4"
-                >
-              </n-carousel-item>
-              <n-carousel-item :style="{ width: '90%' }">
-                <img
-                    class="carousel-img"
-                    src="https://api.ixiaowai.cn/gqapi/gqapi.php?t=5"
-                >
-              </n-carousel-item>
+                <n-carousel-item :style="{ width: '80%' }">
+                    <img
+                        class="carousel-img"
+                        src="http://cdn.82coco.cn/2022.jpg"
+                    >
+                </n-carousel-item>
+                <n-carousel-item :style="{ width: '90%' }">
+                    <img
+                        class="carousel-img"
+                        src="http://cdn.82coco.cn/one.jpg"
+                    >
+                </n-carousel-item>
+                <n-carousel-item :style="{ width: '90%' }">
+                    <img
+                        class="carousel-img"
+                        src="https://api.ixiaowai.cn/gqapi/gqapi.php?t=4"
+                    >
+                </n-carousel-item>
+                <n-carousel-item :style="{ width: '90%' }">
+                    <img
+                        class="carousel-img"
+                        src="https://api.ixiaowai.cn/gqapi/gqapi.php?t=5"
+                    >
+                </n-carousel-item>
             </n-carousel>
 
         </div>
@@ -54,7 +54,7 @@
                 <router-link :to="{ name: 'articles',query:{articleId:items.articleId}}">
                     <a-card hoverable :loading="loading">
                         <template #cover>
-<!--                            <img alt="example" :src=cardImage+index />-->
+                            <!--                            <img alt="example" :src=cardImage+index />-->
                             <img alt="example" :src=items.articleImage />
                         </template>
                         <a-card-meta :title=items.title>
@@ -147,11 +147,11 @@ export default {
 
 <style scoped>
 .carousel-img {
-  margin: 0 auto;
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  border-radius: 50px;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: 50px;
 }
 
 
@@ -170,17 +170,27 @@ export default {
     display: flex;
     flex-wrap: wrap;
     width: 95%;
+
     justify-content: space-between;
     align-content: space-between;
     margin: 20px auto;
 }
+.ant-card{
+    height: 100%;
+}
+.ant-card-cover {
+    height: 80%;
+}
 
+.ant-card-body {
+    height: 20%;
+}
 
 /*多端自适应布局*/
 @media (max-width: 768px) {
-  .card_carousel{
-    height: 30vh;
-  }
+    .card_carousel {
+        height: 30vh;
+    }
 
 
     /*设置卡片的单个长度*/
@@ -194,9 +204,9 @@ export default {
 }
 
 @media screen and (max-width: 992px) and (min-width: 768px) {
-  .card_carousel{
-    height: 40vh;
-  }
+    .card_carousel {
+        height: 40vh;
+    }
 
     /*设置卡片的单个长度*/
     .card_item {
@@ -210,9 +220,9 @@ export default {
 
 @media (min-width: 992px) {
 
-.card_carousel{
-  height: 60vh;
-}
+    .card_carousel {
+        height: 60vh;
+    }
 
 
     /*设置卡片的单个长度*/
